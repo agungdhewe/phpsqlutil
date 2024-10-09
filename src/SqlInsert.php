@@ -4,19 +4,17 @@
 
 final class SqlInsert extends SqlCommand
 {
-	private readonly string $_tablename;
-	private readonly array $_fields;
 
 
 	public function __construct(string $tablename, object $obj) {
-		$this->_tablename = $tablename;
 		$fields = [];
 		$defaultvalues = [];
 		foreach ($obj as $key => $value) {
 			$fields[] = $key;
 			$defaultvalues[$key] = $value;
 		}
-		$this->_fields = $fields;
+		$this->setTableName($tablename);
+		$this->setFields($fields);
 		$this->setDefaultValues($defaultvalues);
 	}
 

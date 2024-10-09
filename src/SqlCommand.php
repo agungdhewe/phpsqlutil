@@ -4,9 +4,23 @@ abstract class SqlCommand {
 	protected string $BeginQuote = "";
 	protected string $EndQuote = "";
 	
+	protected readonly string $_tablename;
+	protected readonly array $_fields;
+	protected readonly array $_keys;
 	protected readonly array $_defaultvalues;
 
 
+	public function setTableName(string $tablename): void {
+		$this->_tablename = $tablename;
+	}
+
+	public function setFields(array $fields): void {
+		$this->_fields = $fields;
+	}
+
+	public function setKeys(array $keys): void {
+		$this->_keys = $keys;
+	}
 
 	public function setDefaultValues(array $defaultvalues): void {
 		$this->_defaultvalues = $defaultvalues;
