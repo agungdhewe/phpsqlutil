@@ -28,19 +28,18 @@ try {
 	
 	
 	// update data dari row
+	if ($row) {
+		$obj = (object)$row;
+		$cmd = new SqlUpdate("mst_bank", $obj, ['bank_id']);
+		$sql = $cmd->getSqlString();
+		$stmt = $db->prepare($sql);
 
-	$obj = (object)$row;
-	$cmd = new SqlUpdate("mst_bank", $obj, ['bank_id']);
-	$sql = $cmd->getSqlString();
-	$stmt = $db->prepare($sql);
-
-	$newdata = new stdClass();
-	$newdata->bank_name = 'Ini ganti nama bank';
-	
-	$params = $cmd->getParameter($newdata);
-	$stmt->execute($params);
-
-
+		$newdata = new stdClass();
+		$newdata->bank_name = 'Ini ganti nama bank';
+		
+		$params = $cmd->getParameter($newdata);
+		$stmt->execute($params);
+	}
 
 
 } catch (PDOException $e) {
