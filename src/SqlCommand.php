@@ -61,5 +61,38 @@ abstract class SqlCommand {
 		return $params;
 	}
 
+	public function getKeyParameter(object $obj = null): array{
+		if (!isset($this->_defaultvalues)) {
+			$this->_defaultvalues = (array)$obj;
+		}
+		
+		$params = [];
+		if ($obj === null) {
+			foreach ($this->_defaultvalues as $key => $value) {
+				if (!in_array($key, $this->_keys)) {
+					continue;
+				}
+
+				$name = ":$key";
+				$params[$name] = $value; 
+			}
+		} else {
+			foreach ($this->_defaultvalues as $key => $value) {
+				if (!in_array($key, $this->_keys)) {
+					continue;
+				}
+
+				$name = ":$key";
+				if (property_exists($obj, $key)) {
+					$value = $obj->$key;
+				}
+				$params[$name] = $value; 
+			}
+		}
+		return $params;
+
+	}
+
+
 
 }

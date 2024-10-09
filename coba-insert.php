@@ -1,42 +1,42 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/dbconnection.php';
 
 use Agungdhewe\Phpsqlutil\SqlInsert;
 
 try {
 
+	
+
 	// coba konek ke DB
-	$db = new PDO("mysql:host=127.0.0.1;dbname=fgtadbdev;", "root", "rahasia123!", [
-		\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-		\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-		\PDO::ATTR_PERSISTENT=>true
-	]);
+	$dbconf = $GLOBALS['dbconfig'];
+	$db = new PDO($dbconf['DSN'], $dbconf['user'], $dbconf['pass'], $dbconf['params']);
 		
 	$obj = new stdClass();
-	$obj->area_id = 'AAA';
-	$obj->area_name = 'Test AAA';
+	$obj->bank_id = 'AAA';
+	$obj->bank_name = 'Test AAA';
+	$obj->country_id = 'ID';
 	$obj->_createby = 'admin';
 
-	$cmd = new SqlInsert("mst_area", $obj);
-	$cmd->setQuote('[', ']');
+	$cmd = new SqlInsert("mst_bank", $obj);
+	// $cmd->setQuote('[', ']');
 
 	$sql = $cmd->getSqlString();
-
-	echo $sql;
-	echo "\r\n";
-	// $stmt = $db->prepare($sql);
+	$stmt = $db->prepare($sql);
 
 	
+	echo "inserting data 1...\n";
 	$params = $cmd->getParameter();
-	print_r($params);
+	$stmt->execute($params);	
 
 
+	echo "inserting data 2...\n";
 	$newdata = new stdClass();
-	$newdata -> area_id = 'BBB';
-	$newdata -> area_name = 'Test BBB';
+	$newdata -> bank_id = 'BBB';
+	$newdata -> bank_name = 'Test BBB';
 	$params = $cmd->getParameter($newdata);
-	print_r($params);
+	$stmt->execute($params);
 
 
 	

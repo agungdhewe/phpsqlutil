@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/dbconnection.php';
 
 
+use Agungdhewe\Phpsqlutil\SqlSelect;
 use Agungdhewe\Phpsqlutil\SqlUpdate;
 
 try {
@@ -13,29 +14,33 @@ try {
 	$db = new PDO($dbconf['DSN'], $dbconf['user'], $dbconf['pass'], $dbconf['params']);
 	
 		
-	$obj = new stdClass();
-	$obj->bank_id = 'AAA';
-	$obj->bank_name = 'Bank AAA';
-	$obj->bank_code = 'BBB-01'; 
-	$obj->_createby = 'admin';
-
-	$cmd = new SqlUpdate("mst_bank", $obj, ['bank_id']);
-	// $cmd->setQuote('[', ']');
+	$cmd = new SqlSelect("mst_bank", ['bank_id']);
 
 	$sql = $cmd->getSqlString();
 	$stmt = $db->prepare($sql);
+	
+	$key = new stdClass();
+	$key->bank_id = 'AAA';
+	$params = $cmd->getKeyParameter($key);
 
-	echo "updating data 1...\n";	
-	$params = $cmd->getParameter();
 	$stmt->execute($params);
+	$row = $stmt->fetch();
+	
+	
+	// update data dari row
 
-	echo "updating data 1...\n";	
+	$obj = (object)$row;
+	$cmd = new SqlUpdate("mst_bank", $obj, ['bank_id']);
+	$sql = $cmd->getSqlString();
+	$stmt = $db->prepare($sql);
+
 	$newdata = new stdClass();
-	$newdata->bank_id = 'BBB';
-	$newdata->bank_name = 'Bank BBB';
-	$newdata->bank_code = null;
+	$newdata->bank_name = 'Ini ganti nama bank';
+	
 	$params = $cmd->getParameter($newdata);
 	$stmt->execute($params);
+
+
 
 
 } catch (PDOException $e) {
