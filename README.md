@@ -10,7 +10,7 @@ Add this library to your project
 
 ### Insert Data
 
-	use Agungdhewe\Phpsqlutil\SqlInsert;
+	use AgungDhewe\PhpSqlUtil\SqlInsert;
 
 
 	// initialize database connection
@@ -40,7 +40,7 @@ If we want to insert new row, using previous initiation, we need only providing 
 
 ## Update Data
 
-	use Agungdhewe\Phpsqlutil\SqlInsert;
+	use AgungDhewe\PhpSqlUtil\SqlInsert;
 
 	// initialize database connection
 	$db = new PDO(...);
@@ -61,7 +61,7 @@ If we want to insert new row, using previous initiation, we need only providing 
 
 ## Delete Data
 
-	use Agungdhewe\Phpsqlutil\SqlDelete;
+	use AgungDhewe\PhpSqlUtil\SqlDelete;
 
 	// initialize database connection
 	$db = new PDO(...);
@@ -77,7 +77,7 @@ If we want to insert new row, using previous initiation, we need only providing 
 
 ## Check existing data and update
 
-	use Agungdhewe\Phpsqlutil\SqlDelete;
+	use AgungDhewe\PhpSqlUtil\SqlDelete;
 
 	// initialize database connection
 	$db = new PDO(...);

@@ -4,8 +4,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/dbconnection.php';
 
 
-use Agungdhewe\Phpsqlutil\SqlSelect;
-use Agungdhewe\Phpsqlutil\SqlUpdate;
+use AgungDhewe\PhpSqlUtil\SqlSelect;
+use AgungDhewe\PhpSqlUtil\SqlUpdate;
 
 try {
 

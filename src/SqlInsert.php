@@ -1,4 +1,4 @@
-<?php namespace Agungdhewe\Phpsqlutil;
+<?php namespace AgungDhewe\PhpSqlUtil;
 
 
 
