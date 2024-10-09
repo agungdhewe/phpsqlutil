@@ -1,0 +1,18 @@
+{
+    "name": "agungdhewe/phpsqlutil",
+    "description": "Utility for creating SQL Insert, Update and Delete easier",
+    "type": "library",
+    "license": "GNU GENERAL PUBLIC LICENSE",
+    "autoload": {
+        "psr-4": {
+            "Agungdhewe\\Phpsqlutil\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Agung Nugroho",
+            "email": "agung.dhewe@gmail.com"
+        }
+    ],
+    "require": {}
+}
