@@ -9,6 +9,8 @@ abstract class SqlCommand {
 	protected readonly array $_keys;
 	protected readonly array $_defaultvalues;
 
+	protected readonly object $_stmt;
+	protected readonly object $_db;
 
 	public function setTableName(string $tablename): void {
 		$this->_tablename = $tablename;
@@ -93,6 +95,13 @@ abstract class SqlCommand {
 
 	}
 
+	public function bind(object $db) : void {
+		$this->_db = $db;
+		$this->_stmt = $db->prepare($this->getSqlString());
+	}
 
+	public function getPreparedStatement() : object {
+		return $this->_stmt;
+	}
 
 }

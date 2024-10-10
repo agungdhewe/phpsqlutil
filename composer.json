@@ -1,7 +1,10 @@
 {
     "name": "agungdhewe/phpsqlutil",
-    "description": "Utility for creating SQL Insert, Update and Delete easier",
+    "description": "Utility for create SQL insert, update and delete",
     "type": "library",
+    "require": {
+        "php": "^8.3"
+    },
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
@@ -13,6 +16,6 @@
             "name": "Agung Nugroho",
             "email": "agung.dhewe@gmail.com"
         }
-    ],
-    "require": {}
+    ]
 }
+
