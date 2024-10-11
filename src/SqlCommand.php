@@ -104,4 +104,21 @@ abstract class SqlCommand {
 		return $this->_stmt;
 	}
 
+	public function execute(?object $obj = null) : bool {
+		if ($obj !== null) {
+			$params = $this->getParameter($obj);
+		} else {
+			$params = [];
+		}
+		return $this->_stmt->execute($params);
+	}
+
+	public function fetch(int $mode = PDO::FETCH_DEFAULT, int $cursorOrientation = PDO::FETCH_ORI_NEXT, int $cursorOffset = 0) : mixed {
+		return $this->_stmt->fetch($mode, $cursorOrientation, $cursorOffset);
+	}
+
+	public function fetchAll(int $mode = PDO::FETCH_DEFAULT) : array {
+		return $this->_stmt->fetchAll($mode);
+	}
+
 }

@@ -20,6 +20,7 @@ try {
 	$obj->_createby = 'admin';
 
 	$cmd = new SqlInsert("mst_bank", $obj);
+	$cmd->bind($db);
 	// $cmd->setQuote('[', ']');
 
 	$sql = $cmd->getSqlString();
@@ -39,7 +40,11 @@ try {
 	$stmt->execute($params);
 
 
-	
+	echo "inserting data 3...\n";
+	$newdata = new stdClass();
+	$newdata -> bank_id = 'CCC';
+	$newdata -> bank_name = 'Coba CCC';
+	$cmd->execute($newdata);
 
 } catch (PDOException $e) {
 	echo "\nERROR\n";

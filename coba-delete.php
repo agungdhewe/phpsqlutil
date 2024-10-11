@@ -26,9 +26,16 @@ try {
 	$params = $cmd->getKeyParameter();
 	$stmt->execute($params);
 
-	echo "deleting data 1...\n";	
+	echo "deleting data 2...\n";	
 	$newdata = new stdClass();
 	$newdata->bank_id = 'BBB';
+	$params = $cmd->getKeyParameter($newdata);
+	$stmt->execute($params);
+
+
+	echo "deleting data 3...\n";	
+	$newdata = new stdClass();
+	$newdata->bank_id = 'CCC';
 	$params = $cmd->getKeyParameter($newdata);
 	$stmt->execute($params);
 
