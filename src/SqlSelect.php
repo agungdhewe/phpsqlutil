@@ -2,8 +2,13 @@
 
 final class SqlSelect extends SqlCommand {
 
-	public function __construct(string $tablename, array $keys) {
+	public function __construct(string $tablename, object $objkeys) {
 		$this->setTableName($tablename);
+		
+		$keys = [];
+		foreach ($objkeys as $key=>$value) {
+			$keys[] = $key; 
+		}
 		$this->setKeys($keys);
 	}
 

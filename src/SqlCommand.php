@@ -45,6 +45,10 @@ abstract class SqlCommand {
 
 
 	public function getParameter(object $obj = null): array{
+		if (!isset($this->_defaultvalues)) {
+			$this->_defaultvalues = (array)$obj;
+		}
+
 		$params = [];
 		if ($obj === null) {
 			foreach ($this->_defaultvalues as $key => $value) {
@@ -113,11 +117,11 @@ abstract class SqlCommand {
 		return $this->_stmt->execute($params);
 	}
 
-	public function fetch(int $mode = PDO::FETCH_DEFAULT, int $cursorOrientation = PDO::FETCH_ORI_NEXT, int $cursorOffset = 0) : mixed {
+	public function fetch(int $mode = \PDO::FETCH_DEFAULT, int $cursorOrientation = \PDO::FETCH_ORI_NEXT, int $cursorOffset = 0) : mixed {
 		return $this->_stmt->fetch($mode, $cursorOrientation, $cursorOffset);
 	}
 
-	public function fetchAll(int $mode = PDO::FETCH_DEFAULT) : array {
+	public function fetchAll(int $mode = \PDO::FETCH_DEFAULT) : array {
 		return $this->_stmt->fetchAll($mode);
 	}
 
