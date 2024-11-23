@@ -18,7 +18,7 @@ final class SqlInsert extends SqlCommand
 		$this->setDefaultValues($defaultvalues);
 	}
 
-	#[Override]
+	// #[Override]
 	public function getSqlString(): string {
 		try {
 			$tablename = $this->quoteName($this->_tablename);

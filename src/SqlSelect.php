@@ -12,7 +12,7 @@ final class SqlSelect extends SqlCommand {
 		$this->setKeys($keys);
 	}
 
-	#[Override]
+	// #[Override]
 	public function getSqlString(?array $fields = null): string {
 		try {
 			$tablename = $this->quoteName($this->_tablename);

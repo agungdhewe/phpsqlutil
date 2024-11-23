@@ -3,7 +3,7 @@
     "description": "Utility for create SQL insert, update and delete",
     "type": "library",
     "require": {
-        "php": "^8.3"
+        "php": "^8.1"
     },
     "license": "GPL-3.0-or-later",
     "autoload": {
